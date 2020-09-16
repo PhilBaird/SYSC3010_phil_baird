@@ -7,7 +7,7 @@ secret = [random.choice('ABCDEF') for item in range(4)]
 print("I've selected a 4-character secret code from the letters A,B,C,D,E and F.")
 print("I may have repeated some.")
 print("Now, try and guess what I chose.")
-yourguess = []
+yourguess = ''
 while list(yourguess) != secret:
     yourguess = input("Enter a 4-letter guess: e.g. ABCD : ").upper()
     if len(yourguess) != 4:
