@@ -1,18 +1,16 @@
 import http.client
 import urllib.parse
 import time
-key = "JXB39Y73FYFB1Y4K" # Put your API Key here
-def thermometer():
+key = "AT68QYQ94MQEWXL3"
+#key = "JXB39Y73FYFB1Y4K"
+def write():
     while True:
-        #Calculate CPU temperature of Raspberry Pi in Degrees C
-        temp = int(open('/sys/class/thermal/thermal_zone0/temp').read()) / 1e3 # Get Raspberry Pi CPU temp
-        params = urllib.parse.urlencode({'field1': temp, 'key': key })
+        params = urllib.parse.urlencode({'field1': "L3-t-6", 'field2': "philipbaird@cmail.carleton.ca", 'field3': "b",'key':key })
         headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}
         conn = http.client.HTTPConnection("api.thingspeak.com:80")
         try:
             conn.request("POST", "/update", params, headers)
             response = conn.getresponse()
-            print(temp)
             print(response.status, response.reason)
             data = response.read()
             conn.close()
@@ -20,5 +18,4 @@ def thermometer():
             print("connection failed")
         break
 if __name__ == "__main__":
-    while True:
-        thermometer()
+    write()
